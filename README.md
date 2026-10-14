@@ -1,5 +1,5 @@
 # Excel Data Science Salary Dashboard
-
+![Dashboard preview](images/dashboard.png)
 ## Introduction
 
 This Excel dashboard helps users explore salary trends across data-related roles and compare median salaries based on **job title, country, and job schedule type**. It combines a large job-posting dataset with interactive selections, formulas, and charts to turn raw job-market data into practical career insights.
