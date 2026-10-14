@@ -163,39 +163,12 @@ The workbook separates raw data, user selections, calculations, and reporting ac
 - Chart preparation and dashboard visualization
 - Separating raw data, calculations, and presentation
 
-## How to Use
-
-1. Open `Final_Dashboard.xlsx` in Microsoft Excel.
-2. Go to the **Dashboard** worksheet.
-3. Use the dropdowns to select a **Job Title**, **Country**, and **Job Type**.
-4. Review the salary result and charts for the selected criteria.
-5. Change one or more selections to compare a different role, location, or schedule type.
-
-The workbook uses modern Excel functions, including dynamic array functions. For best compatibility, open it in a recent version of Microsoft Excel that supports these functions.
-
-## 💡 Design Principles
-
-This project is built around four principles:
-
-**1. Relevant comparisons**  
-Salary results are calculated for selected criteria so users can compare roles and employment contexts.
-
-**2. Formula-driven analysis**  
-Excel formulas automate filtering, median calculations, sorting, and lookups.
-
-**3. Consistent inputs**  
-Dropdown-based data validation helps users choose values from predefined lists.
-
-**4. Separation of logic and presentation**  
-The dataset and supporting calculation worksheets power the dashboard, while the Dashboard sheet provides the main interface for exploration.
-
 ## Potential Future Improvements
 
 The dashboard could be extended with:
 
 - 📅 Salary trends over time using posting dates
 - 🧰 Skill-based salary comparisons
-- 🔎 Slicers or other interactive filtering options
 - 📊 Additional KPIs, such as the number of matching salary records
 
 ## 🧠 What I Learned
@@ -212,10 +185,7 @@ Key takeaways include:
 - Connecting calculations to a user-facing dashboard
 - Turning raw job-posting data into a more accessible salary comparison tool
 
-## 👤 Project Purpose
+## Conclusion
 
-This project demonstrates **Excel data analysis, formula automation, data validation, dynamic filtering, salary analysis, and dashboard development**. It shows how Excel can be used to explore job-market data and present salary comparisons in a practical, interactive format.
+This project demonstrates **Excel data analysis, formula automation, data validation, dynamic filtering, salary analysis, and dashboard development**. I created this dashboard to showcase insights into salary trends across various data-related job titles. This dashboard allows users to make informed decisions about their career paths by exploring the functionalities to understand how location and job type influence salaries.
 
-## ⭐️ If You Find This Project Useful
-
-Feel free to explore the workbook, adapt the dashboard to your own salary research, or use its structure as a starting point for building other Excel-based analytics projects.
