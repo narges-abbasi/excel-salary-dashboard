@@ -15,8 +15,7 @@ The workbook uses a dataset containing data-related job information from **2023*
 - Present the results in a dashboard that is easier to interpret than raw data alone.
 
 ## Dataset Overview
-
-The workbook contains a structured Excel table named `jobs` on the **Data** worksheet. It contains **32,672 job records** and 16 fields, including:
+The dataset used for this project contains real-world data science job information from 2023. The workbook contains a structured Excel table named `jobs` on the **Data** worksheet. It contains **32,672 job records** and 16 fields, including:
 
 - **Job information:** `job_title_short`, `job_title`
 - **Location:** `job_location`, `search_location`, `job_country`
@@ -37,17 +36,91 @@ The **Dashboard** sheet is the main user-facing page. It includes dropdown selec
 
 These selections drive the salary analysis so users can explore a particular combination instead of relying on one fixed view.
 
-### Median Salary by Job Title
+### 📉 Charts
 
-The dashboard includes a chart that compares median salary results across job titles. The underlying calculations use salary records with a valid, non-zero annual salary and can highlight the selected job title for easier comparison.
+#### Data Science Job Salaries - Bar Chart
 
-This helps users compare salary levels across roles such as Data Analyst, Data Scientist, Data Engineer, and related senior or engineering positions.
+<img src="/0_Resources/Images/1_Salary_Dashboard_Chart1.png" width="850" height="550" alt="Salary Dashboard Chart1">
 
-### Salary Comparison by Job Type
+- 🛠️ **Excel Features:** Utilized bar chart feature (with formatted salary values) and optimized layout for clarity.
+- 🎨 **Design Choice:** Horizontal bar chart for visual comparison of median salaries.
+- 📉 **Data Organization:** Sorted job titles by descending salary for improved readability.
+- 💡 **Insights Gained:** This enables quick identification of salary trends, noting that Senior roles and Engineers are higher-paying than Analyst roles.
 
-A second chart supports comparison across job schedule types for the selected criteria. This helps show how the available schedule-type categories relate to the salary results.
+#### Salary Comparison by Job Type - Bar Chart
 
-The charts and supporting calculation sheets work together to make comparisons easier to scan.
+<img src="/0_Resources/Images/1_Salary_Dashboard_Chart1.png" width="850" height="550" alt="Salary Dashboard Chart1">
+
+- 🛠️ **Excel Features:** Utilized bar chart feature with formatted salary values.
+- 🎨 **Design Choice:** Horizontal bar chart for visual comparison of median salaries.
+- 📉 **Data Organization:** Sorted job types by descending salary for improved readability.
+- 💡 **Insights Gained:** This enables quick identification of salary trends based on the job type.
+
+#### Country Median Salaries - Map Chart
+
+<img src="/0_Resources/Images/1_Salary_Dashboard_Chart1.png" width="850" height="550" alt="Salary Dashboard Chart1">
+
+- 🛠️ **Excel Features:** Utilized Excel's map chart feature to plot median salaries globally.
+- 🎨 **Design Choice:** Color-coded map to visually differentiate salary levels across regions.
+- 👁️ **Visual Enhancement:** Improved readability and immediate understanding of geographic salary trends.
+- 💡 **Insights Gained:** Enables quick grasp of global salary disparities and highlights high/low salary regions.
+
+### 🧮 Formulas and Functions
+
+#### Median Salary by Job Titles
+
+```
+=MEDIAN(
+IF(
+    (jobs[job_title_short]=A2)*
+    (jobs[job_country]=country)*
+    (ISNUMBER(SEARCH(type,jobs[job_schedule_type])))*
+    (jobs[salary_year_avg]<>0),
+    jobs[salary_year_avg]
+)
+)
+```
+
+- 🔍 **Multi-Criteria Filtering:** Checks job title, country, schedule type, and excludes blank salaries.
+- 📊 **Array Formula:** Utilizes `MEDIAN()` function with nested `IF()` statement to analyze an array.
+- 🎯 **Tailored Insights:** Provides specific salary information for job titles, regions, and schedule types.
+- **🔢 Formula Purpose:** This formula populates the table below, returning the median salary based on job title, country, and type specified.
+
+🍽️ Background Table
+
+![1_Salary_Dashboard_Screenshot1.png](/0_Resources/Images/1_Salary_Dashboard_Screenshot1.png)
+
+📉 Dashboard Implementation
+
+<img src="/0_Resources/Images/1_Salary_Dashboard_Job_Title.png" width="400" height="500" alt="Salary Dashboard Title">
+
+#### ⏰ Count of Job Schedule Type
+
+```
+=FILTER(J2#,(NOT(ISNUMBER(SEARCH("and",J2#))+ISNUMBER(SEARCH(",",J2#))))*(J2#<>0))
+```
+
+- 🔍 **Unique List Generation:** This Excel formula below employs the `FILTER()` function to exclude entries containing "and" or commas, and omit zero values.
+- **🔢 Formula Purpose:** This formula populates the table below, which gives us a list of unique job schedule types.
+
+🍽️ Background Table
+
+![1_Salary_Dashboard_Type.png](/0_Resources/Images/1_Salary_Dashboard_Screenshot2.png)
+
+📉 Dashboard Implementation:
+
+<img src="/0_Resources/Images/1_Salary_Dashboard_Type.png" width="350" height="500" alt="Salary Dashboard Type">
+
+### ❎ Data Validation
+
+#### 🔍 Filtered List
+
+- 🔒 **Enhanced Data Validation:** Implementing the filtered list as a data validation rule under the `Job Title`, `Country`, and `Type` option in the Data tab ensures:
+    - 🎯 User input is restricted to predefined, validated schedule types
+    - 🚫 Incorrect or inconsistent entries are prevented
+    - 👥 Overall usability of the dashboard is enhanced
+
+<img src="/0_Resources/Images/1_Salary_Dashboard_Data_Validation.gif" width="425" height="400" alt="Salary Dashboard Data Validation">
 
 ## 🔄 How the Dashboard Works
 
@@ -90,12 +163,24 @@ The workbook uses a range of Excel functions and techniques to prepare the analy
 
 The workbook uses a multi-criteria median calculation that matches the selected job title, country, and job schedule type, while excluding records with a zero annual salary.
 
+```
+=MEDIAN(
+IF(
+    (jobs[job_title_short]=A2)*
+    (jobs[job_country]=country)*
+    (ISNUMBER(SEARCH(type,jobs[job_schedule_type])))*
+    (jobs[salary_year_avg]<>0),
+    jobs[salary_year_avg]
+)
+)
+```
+
 Conceptually, the formula:
 
 1. Checks the job title against the selected title.
 2. Checks the country against the selected country.
 3. Checks whether the schedule-type field matches the selected type.
-4. Excludes zero annual salary values.
+4. Excludes blank annual salaries.
 5. Calculates the median of the remaining annual salaries.
 
 This allows the displayed result to respond to the dashboard selections rather than using a single overall salary figure.
@@ -108,16 +193,11 @@ The workbook separates raw data, user selections, calculations, and reporting ac
 |---|---|
 | `Data` | Main job-postings dataset stored in the `jobs` Excel Table |
 | `Dashboard` | Main interface with selection dropdowns and charts |
-| `Calculator` | Salary calculator selection area and result |
+| `Validation` | Lists and calculation ranges used to support dropdowns and filtering |
 | `Salary` | Median salary calculations and sorted job-title salary results |
-| `Title` | Salary results used for job-title comparison and chart highlighting |
-| `Country` / `Country2` | Country-related salary data and supporting results |
+| `Country` | Country-related salary data and supporting results |
 | `Type` | Supporting calculations for job schedule-type comparisons |
-| `Validation ` / `Data_Validation` | Lists and calculation ranges used to support dropdowns and filtering |
-| `Median` | Additional median salary calculation sheet |
-| `Platform` | Supporting counts and source/platform calculations |
-
-Some worksheets are calculation layers rather than pages intended for direct interaction.
+| `Platform` | Supporting job posting platform counts and calculations |
 
 ## 🛠 Tools & Skills Demonstrated
 
