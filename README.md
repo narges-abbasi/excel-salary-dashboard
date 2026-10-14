@@ -1,6 +1,6 @@
 # Excel Data Science Salary Dashboard
 
-## 📊 Introduction
+## Introduction
 
 This Excel dashboard helps users explore salary trends across data-related roles and compare median salaries based on **job title, country, and job schedule type**. It combines a large job-posting dataset with interactive selections, formulas, and charts to turn raw job-market data into practical career insights.
 
@@ -14,7 +14,7 @@ The workbook uses a dataset containing data-related job information from **2023*
 - Use formulas to calculate salary metrics from the underlying dataset.
 - Present the results in a dashboard that is easier to interpret than raw data alone.
 
-## 📁 Dataset Overview
+## Dataset Overview
 
 The workbook contains a structured Excel table named `jobs` on the **Data** worksheet. It contains **32,672 job records** and 16 fields, including:
 
@@ -27,7 +27,7 @@ The workbook contains a structured Excel table named `jobs` on the **Data** work
 
 The dataset provides the foundation for the salary calculations and dashboard visuals.
 
-## 🧭 Dashboard Overview
+## Dashboard Overview
 
 The **Dashboard** sheet is the main user-facing page. It includes dropdown selections for:
 
@@ -37,13 +37,13 @@ The **Dashboard** sheet is the main user-facing page. It includes dropdown selec
 
 These selections drive the salary analysis so users can explore a particular combination instead of relying on one fixed view.
 
-### 📉 Median Salary by Job Title
+### Median Salary by Job Title
 
 The dashboard includes a chart that compares median salary results across job titles. The underlying calculations use salary records with a valid, non-zero annual salary and can highlight the selected job title for easier comparison.
 
 This helps users compare salary levels across roles such as Data Analyst, Data Scientist, Data Engineer, and related senior or engineering positions.
 
-### 🧩 Salary Comparison by Job Type
+### Salary Comparison by Job Type
 
 A second chart supports comparison across job schedule types for the selected criteria. This helps show how the available schedule-type categories relate to the salary results.
 
@@ -69,7 +69,7 @@ The workflow is designed to be straightforward:
 
 The user mainly interacts with the dropdowns on the **Dashboard** sheet. The supporting worksheets contain the lists, formulas, and intermediate calculations used to generate the results.
 
-## 🧮 Formulas & Excel Techniques
+## Formulas & Excel Techniques
 
 The workbook uses a range of Excel functions and techniques to prepare the analysis.
 
@@ -141,7 +141,7 @@ Some worksheets are calculation layers rather than pages intended for direct int
 - Chart preparation and dashboard visualization
 - Separating raw data, calculations, and presentation
 
-## 🚀 How to Use
+## How to Use
 
 1. Open `Final_Dashboard.xlsx` in Microsoft Excel.
 2. Go to the **Dashboard** worksheet.
@@ -167,13 +167,10 @@ Dropdown-based data validation helps users choose values from predefined lists.
 **4. Separation of logic and presentation**  
 The dataset and supporting calculation worksheets power the dashboard, while the Dashboard sheet provides the main interface for exploration.
 
-## 🔮 Potential Future Improvements
+## Potential Future Improvements
 
 The dashboard could be extended with:
 
-- 📈 Additional comparisons of salary distributions, not only medians
-- 🌍 More interactive geographic salary analysis
-- 🕒 A clearer comparison of hourly and annual salary data
 - 📅 Salary trends over time using posting dates
 - 🧰 Skill-based salary comparisons
 - 🔎 Slicers or other interactive filtering options
